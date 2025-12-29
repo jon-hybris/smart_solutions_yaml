@@ -1,0 +1,75 @@
+smart_solutions_yaml/
+│
+├─ core/
+│  ├─ smart_solutions_master.yaml      # Authoritative operating context
+│  ├─ terminology.yaml                 # Canonical definitions (CPT, UAT, MVP, etc.)
+│  ├─ delivery_process.yaml            # Discovery → build → testing → deployment
+│  ├─ qa_cpt_standards.yaml             # QA and Critical Path Testing SOP
+│  ├─ deployment_standards.yaml         # Deployment rules and cadence
+│
+├─ sops/
+│  ├─ README.md                         # How SOPs are organized and used
+│  │
+│  ├─ discovery/
+│  │  ├─ discovery_overview.yaml
+│  │  ├─ discovery_session_1.yaml
+│  │  └─ discovery_session_2.yaml
+│  │
+│  ├─ requirements/
+│  │  ├─ requirements_mvp.yaml
+│  │  ├─ scope_control.yaml
+│  │  └─ assumptions_and_exclusions.yaml
+│  │
+│  ├─ testing/
+│  │  ├─ qa_process.yaml
+│  │  ├─ cpt_pre_deployment.yaml
+│  │  └─ cpt_post_deployment.yaml
+│  │
+│  ├─ deployment/
+│  │  ├─ deployment_standard.yaml
+│  │  ├─ deployment_emergency.yaml
+│  │  └─ rollback_procedure.yaml
+│  │
+│  ├─ support/
+│  │  ├─ sla_standards.yaml
+│  │  ├─ warranty_policy.yaml
+│  │  └─ emergency_handling.yaml
+│
+├─ templates/
+│  ├─ discovery_session.yaml            # Generic discovery template
+│  ├─ requirements_mvp.yaml             # MVP requirements template
+│  ├─ jira_story.yaml                   # Jira story template
+│  ├─ deployment_summary.yaml           # Basecamp deployment message template
+│
+├─ clients/
+│  ├─ _client_template.yaml
+│  ├─ client_registry.yaml              # Optional extracted registry
+│
+├─ client_instances/
+│  ├─ AATSP.yaml
+│  ├─ GTLS.yaml
+│  ├─ JJSP.yaml
+│  ├─ RDSCBRONZE.yaml
+│  └─ README.md                         # Rules for client instance overrides
+│
+├─ projects/
+│  ├─ _project_template.yaml
+│  ├─ active/
+│  │  ├─ allen_arms_shopware_mvp.yaml
+│  │  └─ spartan_blades_support.yaml
+│  │
+│  └─ archived/
+│     └─ example_archived_project.yaml
+│
+├─ examples/
+│  ├─ example_shopware_mvp_project.yaml
+│  └─ example_support_plan.yaml
+│
+├─ schemas/
+│  ├─ master.schema.json                # Optional validation for master YAML
+│  ├─ sop.schema.json
+│
+├─ GOVERNANCE.md
+├─ CHANGELOG.md
+├─ README.md
+└─ .gitignore
