@@ -1,174 +1,172 @@
 delivery_process:
-  version: '1.0'
+  version: "1.1"
   owner: Smart Solutions
-  last_updated: '2025-12-29'
-  principles:
-  - client partnership and shared accountability
-  - staged validation before production
-  - scope driven execution
-  - transparency in approvals and deployment
-  - production stability over speed
-  environments:
-    supported:
-    - staging
-    - production
-    notes:
-    - all work is validated in staging prior to production deployment
-    - production changes require explicit approval
-  intake_and_onboarding:
-    triggers:
-    - signed SOW
-    - approved change request
-    - active support plan
-    activities:
-    - confirm scope and objectives
-    - establish communication channels
-    - confirm access and credentials
-    - review existing documentation
-    - align on delivery approach
-    outputs:
-    - confirmed scope
-    - access verified
-    - delivery timeline established
-  discovery_and_planning:
-    applies_to:
-    - new builds
-    - replatforms
-    - large enhancements
-    activities:
-    - stakeholder discovery sessions
-    - requirements validation
-    - platform and integration review
-    - risk identification
-    - timeline and milestone confirmation
-    deliverables:
-    - functional requirements
-    - integration architecture
-    - information architecture
-    - updated estimate and timeline
-  execution_and_build:
-    activities:
-    - platform configuration
-    - theme and UX implementation
-    - custom development
-    - integration setup
-    - data migration where in scope
-    standards:
-    - source control required
-    - staging environment required
-    - incremental validation encouraged
-    exclusions:
-    - out of scope enhancements
-    - third party failures
-    - client side data issues
-  internal_testing:
-    owner: Smart Solutions
-    description: 'Internal validation performed prior to client review to ensure scoped functionality is working as expected.
+  last_updated: "2025-12-29"
 
-      '
-    activities:
-    - functional testing
-    - regression testing of impacted areas
-    - CPT critical path testing
-    outputs:
-    - staging ready for client review
-  user_acceptance_testing:
-    owner: client
-    requirements:
-    - client validates day to day workflows
-    - full checkout testing including live payment
-    - admin and content workflows reviewed
-    approval_method:
-    - approval provided via support portal ticket
-    notes:
-    - untested items are not covered by warranty
-    - delays in UAT may impact timelines
-    sop_reference:
-      sop_id: SOP-QA-001
-      path: sops/testing_and_qa_procedures.yaml
-  deployment:
-    prerequisites:
-    - staging approval
-    - confirmed deployment window
-    - deployment summary shared
-    schedule:
-      preferred_days:
-      - monday
-      - tuesday
-      - wednesday
-      - thursday
-      preferred_time_window: early morning ET
-    activities:
-    - pre deployment CPT
-    - production deployment
-    - post deployment CPT
-    communication:
-    - deployment notice shared in Basecamp
-    - status updates during deployment
-    sop_reference:
-      sop_id: SOP-QA-001
-      path: sops/testing_and_qa_procedures.yaml
-  post_deployment:
-    activities:
-    - immediate validation
-    - monitoring for issues
-    - client verification encouraged
-    coverage:
-      warranty_window:
-        duration: 5 business days
-        covers:
-        - defects caused by Smart Solutions work
-        excludes:
-        - third party systems
-        - hosting issues
-        - client modifications
-    sop_reference:
-      sop_id: SOP-QA-001
-      path: sops/testing_and_qa_procedures.yaml
-  ongoing_support:
-    entry_points:
-    - support portal tickets
-    governed_by:
-    - active support plan
-    - Smart Solutions SLA
-    activities:
-    - issue resolution
-    - enhancements
-    - maintenance
-    - advisory support
-    notes:
-    - priority and response times follow SLA
-    - emergency requests billed per plan terms
-  change_management:
-    triggers:
-    - scope change
-    - new requirements
-    - timeline impact
-    process:
-    - impact assessment
-    - estimate provided
-    - client approval required before execution
-  documentation_and_handoff:
-    activities:
-    - access confirmation
-    - training sessions if included
-    - documentation delivery
-    ownership:
-    - client owns approved and paid deliverables
-    - Smart Solutions retains reusable IP
-  success_criteria:
-  - approved scope delivered
-  - staging validated
-  - production deployed successfully
-  - client sign off completed
   governance:
     sops:
-    - sop_id: SOP-QA-001
-      title: Testing and QA Procedures
+      - sop_id: SOP-QA-001
+        title: Testing and QA Procedures
+        path: sop/testing_and_qa_procedures.yaml
+        applies_to:
+          - internal_testing_QA
+          - user_acceptance_testing
+          - deployment_preparation
+          - deployment
+          - post_deployment
+
+  principles:
+    - client partnership and shared accountability
+    - staged validation before production
+    - scope driven execution
+    - transparency in approvals and deployment
+    - production stability over speed
+
+  environments:
+    supported:
+      - staging
+      - production
+    notes:
+      - all work is validated in staging prior to production deployment
+      - production changes require explicit approval
+
+  intake_and_onboarding:
+    triggers:
+      - signed_SOW
+      - approved_change_request
+      - active_support_plan
+    activities:
+      - confirm scope and objectives
+      - establish communication channels
+      - confirm access and credentials
+      - review existing documentation
+      - align on delivery approach
+    outputs:
+      - confirmed scope
+      - access verified
+      - delivery timeline established
+
+  discovery_and_planning:
+    applies_to:
+      - new builds
+      - replatforms
+      - large enhancements
+    activities:
+      - stakeholder discovery sessions
+      - requirements validation
+      - platform and integration review
+      - risk identification
+      - timeline and milestone confirmation
+    deliverables:
+      - functional requirements
+      - integration architecture
+      - information architecture
+      - updated estimate and timeline
+
+  execution_and_build:
+    environment: staging
+    activities:
+      - platform configuration
+      - theme and UX implementation
+      - custom development
+      - integration setup
+      - data migration where in scope
+    standards:
+      - source control required
+      - staging environment required
+      - incremental validation encouraged
+    exclusions:
+      - out of scope enhancements
+      - third party failures
+      - client side data issues
+
+  internal_testing_QA:
+    owner: Smart Solutions
+    sop_reference:
+      sop_id: SOP-QA-001
       path: sop/testing_and_qa_procedures.yaml
-      applies_to:
-      - internal_testing_QA
-      - user_acceptance_testing
-      - deployment_preparation
-      - deployment
-      - post_deployment
+    description: >
+      Internal Quality Assurance performed to validate scoped functionality
+      prior to client review.
+    activities:
+      - functional testing
+      - regression testing of impacted areas
+      - integration validation
+      - CPT execution in staging
+    exit_criteria:
+      - no blocking defects
+      - staging approved for client UAT
+
+  user_acceptance_testing:
+    owner: client
+    sop_reference:
+      sop_id: SOP-QA-001
+      path: sop/testing_and_qa_procedures.yaml
+    environment: staging
+    expectations:
+      - validate real world business workflows
+      - test checkout and payments
+      - verify integrations specific to business operations
+      - confirm content and branding
+    approval_method:
+      - written approval via support portal ticket
+    notes:
+      - untested items are excluded from warranty
+      - delayed UAT may impact deployment timelines
+
+  deployment_preparation:
+    sop_reference:
+      sop_id: SOP-QA-001
+      path: sop/testing_and_qa_procedures.yaml
+    activities:
+      - confirm UAT approval
+      - finalize deployment window
+      - prepare deployment summary
+    requirements:
+      - written client approval
+      - no open blocking defects
+
+  deployment:
+    sop_reference:
+      sop_id: SOP-QA-001
+      path: sop/testing_and_qa_procedures.yaml
+    environment: production
+    schedule:
+      preferred_days:
+        - monday
+        - tuesday
+        - wednesday
+        - thursday
+      preferred_time_window: early_morning_ET
+    activities:
+      - pre deployment CPT
+      - production deployment
+      - post deployment CPT
+    communication:
+      - deployment notice shared in Basecamp
+      - live status updates during deployment
+
+  post_deployment:
+    sop_reference:
+      sop_id: SOP-QA-001
+      path: sop/testing_and_qa_procedures.yaml
+    activities:
+      - immediate validation
+      - production CPT execution
+      - monitoring and issue triage
+    warranty:
+      coverage_window: 5_business_days
+      covers:
+        - defects caused by Smart Solutions work
+      excludes:
+        - untested items
+        - third party systems
+        - hosting issues
+        - client introduced changes
+
+  success_criteria:
+    - approved scope delivered
+    - staging validated
+    - production deployed successfully
+    - CPT completed
+    - client approval documented
