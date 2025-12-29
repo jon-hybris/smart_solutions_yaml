@@ -1,0 +1,156 @@
+terminology:
+  organization:
+    company_name: Smart Solutions
+    abbreviation: SSI
+    website: https://www.smartsolutions.dev
+    support_portal:
+      name: Smart Solutions Support Portal
+      url: https://smartsolutionsdev.atlassian.net/servicedesk/customer/portal/1
+
+  environments:
+    staging:
+      name: Staging
+      description: >
+        Pre-production environment used for development validation,
+        client testing, and approval prior to deployment.
+    production:
+      name: Production
+      description: >
+        Live customer-facing environment where approved changes
+        are deployed.
+
+  testing:
+    qa:
+      name: Quality Assurance
+      abbreviation: QA
+      performed_by: Smart Solutions
+      description: >
+        Internal testing performed by Smart Solutions to verify
+        functionality, stability, and adherence to requirements.
+    uat:
+      name: User Acceptance Testing
+      abbreviation: UAT
+      performed_by: Client
+      description: >
+        Client-led testing to confirm the site functions correctly
+        for real-world business use cases prior to approval.
+    cpt:
+      name: Critical Path Testing
+      abbreviation: CPT
+      performed_by:
+        - Smart Solutions
+        - Client
+      description: >
+        Validation of critical business flows such as checkout,
+        payments, account access, and integrations before and after deployment.
+
+  deployment:
+    deployment:
+      description: >
+        The process of promoting approved changes from Staging
+        to Production.
+    deployment_window:
+      standard:
+        days: Monday–Thursday
+        time: 5:30 AM–9:00 AM ET
+      off_hours:
+        description: >
+          Deployments outside the standard window, subject to
+          availability and applicable rates.
+    approval:
+      required: true
+      method: >
+        Written approval provided via the associated ticket
+        in the Smart Solutions Support Portal.
+    rollback:
+      description: >
+        Reverting Production to a prior stable state if a
+        critical issue is identified post-deployment.
+
+  support:
+    support_plan:
+      description: >
+        A recurring agreement providing access to support,
+        maintenance, and enhancements based on allocated hours.
+    warranty:
+      description: >
+        Coverage for defects caused by Smart Solutions development
+        work, reported within the defined warranty period.
+      exclusions:
+        - third_party_services
+        - hosting_issues
+        - platform_core_bugs
+        - client_code_changes
+    emergency:
+      description: >
+        Production-impacting issues requiring immediate attention.
+      billing: >
+        Billed separately at emergency rates and not applied
+        against plan hours.
+
+  tickets:
+    ticket:
+      description: >
+        A logged request in the Smart Solutions Support Portal
+        used to track work, approvals, communication, and billing.
+    priorities:
+      high:
+        description: >
+          Time-sensitive issues impacting functionality or
+          business operations with manageable workarounds.
+      medium:
+        description: >
+          Non-urgent issues affecting functionality or usability
+          without significant business disruption.
+      low:
+        description: >
+          Minor issues, cosmetic changes, or informational requests.
+    severity_levels:
+      level_1:
+        name: Critical
+        description: >
+          Site down, security breach, or major revenue-impacting issue.
+      level_2:
+        name: High
+        description: >
+          Core functionality impaired with moderate revenue impact.
+      level_3:
+        name: Medium
+        description: >
+          Minor production issues expedited at emergency rates.
+
+  scope_management:
+    mvp:
+      name: Minimum Viable Product
+      description: >
+        Initial release focused on operational stability and
+        core business functionality.
+    change_request:
+      description: >
+        Work requested outside the agreed scope requiring
+        additional estimation and approval.
+    estimate:
+      description: >
+        An informed projection of effort provided prior to
+        execution, subject to change if scope evolves.
+
+  communication:
+    basecamp:
+      usage: >
+        Client-facing communication, deployment notices,
+        and high-level status updates.
+      signature_policy: No signature required
+    support_portal:
+      usage: >
+        Official system of record for requests, approvals,
+        testing confirmation, and billing visibility.
+
+  ownership:
+    code:
+      description: >
+        Client retains ownership of all work paid for upon
+        completion and final payment.
+    access:
+      description: >
+        Credentials and access are provided once contractual
+        and financial obligations are met.
