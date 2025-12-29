@@ -1,0 +1,165 @@
+support_process:
+  version: "1.0"
+  owner: Smart Solutions
+  last_updated: "2025-12-29"
+
+  purpose:
+    description: >
+      Provide a structured, transparent support framework that ensures
+      stability, responsiveness, and continuous improvement of client
+      eCommerce platforms after launch.
+
+  entry_points:
+    primary:
+      channel: Smart Solutions Support Portal
+      uses:
+        - support requests
+        - incident reporting
+        - approvals
+        - status tracking
+    secondary:
+      channel: Basecamp
+      allowed_for:
+        - status communication
+        - deployment notices
+        - coordination
+    exclusions:
+      - direct developer contact
+      - ad hoc requests outside approved channels
+
+  eligibility:
+    requires:
+      - active support plan
+      - active warranty period
+      - approved change request
+    notes:
+      - work is not performed without approval
+      - access issues may delay response
+
+  ticket_lifecycle:
+    states:
+      - submitted
+      - triaged
+      - estimate_provided
+      - approved
+      - in_progress
+      - client_review
+      - completed
+      - closed
+
+  triage_and_prioritization:
+    process:
+      - review ticket details
+      - confirm business impact
+      - assign priority
+      - validate coverage
+    priority_levels:
+      emergency:
+        description: >
+          Production impacting issues requiring immediate attention.
+        billing:
+          covered_by_plan: false
+          billed_at_emergency_rate: true
+      high:
+        description: >
+          Time sensitive issues impacting key functionality or business operations.
+        billing:
+          covered_by_plan: true
+      medium:
+        description: >
+          Non urgent issues with limited business impact.
+        billing:
+          covered_by_plan: true
+      low:
+        description: >
+          Minor issues or informational requests.
+        billing:
+          covered_by_plan: true
+
+  response_expectations:
+    governed_by: Smart Solutions SLA
+    notes:
+      - response times depend on priority and client responsiveness
+      - estimates provided when applicable
+
+  warranty_handling:
+    coverage:
+      duration: "5 business days post deployment"
+      includes:
+        - defects caused by Smart Solutions code or configuration
+      excludes:
+        - third party systems
+        - hosting issues
+        - platform core bugs
+        - client introduced changes
+    validation:
+      - issue must be reproducible
+      - issue must relate to approved scope
+
+  estimation_and_approval:
+    when_required:
+      - enhancements
+      - out of warranty fixes
+      - scope changes
+    process:
+      - assess impact
+      - provide estimate
+      - await approval via support portal
+    auto_approval:
+      allowed_hours: 1
+      purpose:
+        - initial investigation
+        - triage
+        - communication
+
+  execution:
+    standards:
+      - work performed in staging when applicable
+      - production changes follow deployment process
+      - time tracked per ticket
+    exclusions:
+      - unapproved work
+      - undocumented changes
+
+  client_review_and_closure:
+    process:
+      - notify client of completion
+      - request validation
+      - close ticket after confirmation
+    notes:
+      - lack of response may result in closure
+      - reopened issues follow standard triage
+
+  emergency_support:
+    availability:
+      weekdays: "extended hours"
+      weekends_and_holidays: "on call"
+    requirements:
+      - ticket marked as emergency
+      - production impact confirmed
+    notes:
+      - emergency rates apply
+      - work may proceed without prior estimate
+
+  reporting_and_visibility:
+    tools:
+      - support portal dashboard
+      - plan tracking dashboard
+    cadence:
+      - real time ticket updates
+      - periodic status reviews
+
+  escalation:
+    triggers:
+      - prolonged outage
+      - unresolved high impact issues
+    path:
+      - project manager
+      - technical leadership
+      - executive review if required
+
+  success_metrics:
+    - SLA adherence
+    - ticket resolution quality
+    - client satisfaction
+    - platform stability
