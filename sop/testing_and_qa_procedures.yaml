@@ -1,0 +1,197 @@
+testing_and_qa_procedures:
+  sop_id: SOP-QA-001
+  title: Testing and QA Procedures
+  status: active
+  owner: Smart Solutions
+  last_updated: "2025-12-29"
+
+  purpose:
+    description: >
+      Establish standardized procedures for Quality Assurance, User Acceptance
+      Testing, and validation activities to ensure all Smart Solutions
+      deliverables meet functional, operational, and business expectations
+      prior to deployment.
+
+  scope:
+    applies_to:
+      - new website builds
+      - replatforming projects
+      - feature enhancements
+      - bug fixes
+      - maintenance releases
+      - emergency fixes
+    environments:
+      - staging
+      - production
+
+  definitions:
+    QA:
+      name: Quality Assurance
+      description: >
+        Internal testing performed by Smart Solutions throughout the delivery
+        lifecycle to validate scoped functionality, integrations, and
+        configurations.
+    UAT:
+      name: User Acceptance Testing
+      description: >
+        Client led testing to confirm delivered functionality supports real
+        world business workflows and meets expectations prior to launch.
+    CPT:
+      name: Critical Path Testing
+      description: >
+        Validation of core user and revenue generating workflows before and
+        after deployment.
+
+  testing_responsibilities:
+    smart_solutions:
+      responsibilities:
+        - perform internal QA throughout development
+        - validate scoped functionality
+        - execute regression testing on impacted areas
+        - perform CPT before and after deployment
+        - document findings and defects
+    client:
+      responsibilities:
+        - perform UAT in staging
+        - validate business specific workflows
+        - place at least one live order where applicable
+        - verify integrations unique to their operations
+        - provide approval or feedback in a timely manner
+
+  internal_QA_process:
+    timing:
+      - during development
+      - prior to client UAT
+      - prior to deployment
+    testing_coverage:
+      includes:
+        - frontend functionality
+        - backend admin workflows
+        - checkout and payment processing
+        - integrations in scope
+        - configuration changes
+      limitations:
+        - QA cannot simulate every real world user scenario
+        - third party systems may behave unpredictably
+    documentation:
+      required:
+        - ticket based test notes
+        - defect reproduction steps
+        - environment identified
+
+  user_acceptance_testing:
+    description: >
+      UAT is a required step prior to any production deployment and is
+      performed by the client to confirm business readiness.
+    expectations:
+      - test storefront navigation and content
+      - test cart and checkout flows
+      - test logged in and guest experiences
+      - test admin workflows where applicable
+      - test integrations such as shipping, tax, ERP, or email
+    approval_method:
+      - written approval via support portal ticket
+    risks:
+      - insufficient UAT increases post launch risk
+      - untested items are excluded from warranty coverage
+
+  regression_testing:
+    description: >
+      Regression testing ensures new changes do not negatively impact
+      existing functionality.
+    requirements:
+      - performed by Smart Solutions for impacted areas
+      - recommended for clients to test full site workflows
+    notes:
+      - regression expectations increase with project complexity
+
+  critical_path_testing:
+    required_flows:
+      storefront:
+        - homepage loads
+        - navigation and search
+        - product listing pages
+        - product detail pages
+      commerce:
+        - add to cart
+        - cart updates
+        - checkout
+        - payment processing
+        - order confirmation
+      customer:
+        - account creation
+        - login
+        - order history
+      admin:
+        - admin login
+        - order visibility
+      integrations:
+        - payment gateway response
+        - shipping rates
+        - tax calculation where applicable
+
+  defect_management:
+    classifications:
+      blocking:
+        description: >
+          Prevents completion of critical business flows.
+      major:
+        description: >
+          Core functionality impaired with workaround available.
+      minor:
+        description: >
+          Cosmetic or low impact issues.
+    handling:
+      - blocking defects halt deployment
+      - major defects require client alignment
+      - minor defects may be scheduled post launch
+
+  deployment_alignment:
+    pre_deployment_requirements:
+      - internal QA completed
+      - CPT completed in staging
+      - client UAT approval received
+    post_deployment_requirements:
+      - CPT executed in production
+      - immediate issue monitoring
+
+  warranty_alignment:
+    coverage_conditions:
+      - feature tested during QA and UAT
+      - feature approved prior to deployment
+    exclusions:
+      - untested functionality
+      - third party failures
+      - hosting issues
+      - client introduced changes
+    reporting_window:
+      duration: "5 business days post deployment"
+
+  documentation_and_traceability:
+    required_artifacts:
+      - support portal tickets
+      - QA notes
+      - UAT approval records
+      - deployment summaries
+    storage_locations:
+      - support portal
+      - Jira
+      - Basecamp
+
+  authoritative_source:
+    type: external_document
+    format: google_doc
+    url: https://docs.google.com/document/d/1jpHC_fP6kLN9sGb_rwcW5mhhim4xOMkmwk4Ks0xoeAE/edit
+    notes:
+      - this SOP is the system of record
+      - YAML representation enforces operational usage
+
+  review_cycle:
+    cadence: annual
+    next_review_due: "2026-12-29"
+
+  success_criteria:
+    - reduced post launch incidents
+    - clear approval accountability
+    - predictable deployments
+    - enforceable warranty boundaries
