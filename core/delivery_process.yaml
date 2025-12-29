@@ -165,7 +165,7 @@ delivery_process:
     sops:
     - sop_id: SOP-QA-001
       title: Testing and QA Procedures
-      path: sops/testing_and_qa_procedures.yaml
+      path: sop/testing_and_qa_procedures.yaml
       applies_to:
       - internal_testing_QA
       - user_acceptance_testing
