@@ -13,7 +13,7 @@ support_process:
     sops:
       - sop_id: SOP-QA-001
         title: Testing and QA Procedures
-        path: sop/testing_and_qa_procedures.yaml
+        path: sops/testing_and_qa_procedures.yaml
         applies_to:
           - warranty_handling
           - execution
@@ -94,7 +94,7 @@ support_process:
   warranty_handling:
     sop_reference:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
     coverage:
       duration: 5_business_days_post_deployment
       includes:
@@ -127,7 +127,7 @@ support_process:
   execution:
     sop_reference:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
     standards:
       - work performed in staging when applicable
       - production changes follow deployment process
@@ -139,7 +139,7 @@ support_process:
   client_review_and_closure:
     sop_reference:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
     process:
       - notify client of completion
       - request validation
