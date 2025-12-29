@@ -1,0 +1,334 @@
+smart_solutions_master:
+
+  metadata:
+    template_name: Smart Solutions Master Operating YAML
+    template_version: "1.5"
+    last_updated: "2025-12-29"
+    owner:
+      name: Jon Elslager
+      role: PM/BA
+      organization: Smart Solutions
+      timezone: America/Chicago
+      signature_for_email:
+        - Best regards,
+        - Jon Elslager
+        - PM/BA | Smart Solutions
+      basecamp_signature_policy: No signature in Basecamp messages
+
+  organization:
+    name: Smart Solutions
+    website: https://www.smartsolutions.dev
+    timezone: America/New_York
+
+    tools:
+      project_updates: Basecamp
+      documentation: Confluence
+      ticketing_and_approvals: Support Portal
+      design: Figma
+      source_control: Git
+
+    support_portal:
+      name: Smart Solutions Support Portal
+      url: https://smartsolutionsdev.atlassian.net/servicedesk/customer/portal/1
+      used_for:
+        - support_requests
+        - incident_reporting
+        - approvals_and_signoff
+        - status_tracking
+
+    business_hours:
+      regular:
+        days:
+          - Monday
+          - Tuesday
+          - Wednesday
+          - Thursday
+          - Friday
+        time_range_local: 09:00-18:00
+        timezone: America/New_York
+
+      extended_on_call_emergency:
+        weekdays_time_range_local: 18:00-22:00
+        weekends_holidays_time_range_local: 10:00-18:00
+        timezone: America/New_York
+
+    observed_holidays:
+      - New Year's Day
+      - Martin Luther King Day
+      - Memorial Day
+      - Independence Day
+      - Labor Day
+      - Veterans Day
+      - Thanksgiving Day
+      - Christmas Day
+
+  id_standards:
+    client_id:
+      authoritative_source: Jira Project Key or Service Desk Key
+      rules:
+        - If a Jira key exists, use it exactly as the client_id
+        - Client names must be resolved from client_registry
+        - Do not change client_id once established
+
+  terminology:
+    CPT:
+      meaning: Critical Path Testing
+      required:
+        - pre_deployment
+        - post_deployment
+
+  environments:
+    staging:
+      purpose:
+        - client_review
+        - uat
+        - final_verification
+      required_for:
+        - client_approval_prior_to_production
+
+    production:
+      purpose:
+        - live_customer_environment
+        - revenue_operations
+
+  testing_and_quality:
+    smart_solutions_testing:
+      owner: Smart Solutions
+      includes:
+        - feature_validation
+        - regression_smoke
+        - cpt_pre_deployment
+        - cpt_post_deployment
+
+    client_uat:
+      owner: Client
+      expectations:
+        - Test how your team actually uses the site day to day
+        - Validate checkout end to end, including at least one live order when feasible
+        - Validate integrations your team relies on
+        - Verify content, merchandising, and pricing
+      approval:
+        method: Written approval via Support Portal ticket
+        required_before: Production deployment
+
+  deployment:
+    definition: Moving approved changes from Staging to Production
+
+    standard_schedule:
+      days:
+        - Monday
+        - Tuesday
+        - Wednesday
+        - Thursday
+      time_range_local: 05:30-09:00
+      timezone: America/New_York
+
+    prerequisites:
+      - staging_testing_complete
+      - client_written_signoff
+
+    communication:
+      channel: Basecamp
+      deployment_summary_includes:
+        - deployment_date_time
+        - included_tickets
+        - staging_validation_notes
+      status_updates:
+        - deployment_started
+        - deployment_completed
+
+    rollback:
+      responsibility: Smart Solutions
+      principle: Defined per release and platform dependent
+
+  support:
+    sla:
+      name: Smart Solutions SLA
+
+      standard_ticket_priorities:
+        high:
+          response_time_business_days: "1-2"
+          resource_allocation_business_days: "1-3"
+        medium:
+          response_time_business_days: "3-4"
+        low:
+          response_time_business_days: "7"
+
+      emergency_expectations:
+        receipt_confirmation: Within 30 minutes
+        initial_assessment: Within 1 hour
+
+        severity_levels:
+          level_1:
+            name: Critical
+            target_resolution: Within 4 hours
+            examples:
+              - site_down
+              - checkout_or_payment_failure
+              - security_breach
+
+          level_2:
+            name: High
+            target_resolution: Less than 1 day
+            examples:
+              - key_functionality_impaired
+              - severe_performance_degradation
+
+          level_3:
+            name: Medium
+            target_resolution: Less than 2 business days
+            examples:
+              - expedited_non_critical_items
+
+      billing_notes:
+        - Emergency work is billed separately from plan hours
+        - Triage and remediation are billable unless covered by warranty
+
+    warranty:
+      name: Support Plan Warranty Quick Reference
+      covers:
+        - Smart Solutions code defects
+        - Smart Solutions configuration defects
+      not_covered:
+        - Hosting issues
+        - Third party services or integrations
+        - Platform core defects
+        - Third party plugins or extensions
+        - Client modifications
+        - Hacks or malware
+      conditions:
+        - Client testing and approval required prior to deployment
+        - Issues must be reported within 5 business days
+        - Warranty void if code altered outside Smart Solutions
+
+  SOPs:
+    purpose: Standard operating procedures governing day to day execution
+    authoritative: true
+    location: repo
+
+    core_sops:
+      discovery:
+        file: core/delivery_process.yaml
+        applies_to:
+          - new_projects
+          - replatforms
+          - redesigns
+
+      qa_and_cpt:
+        file: core/qa_cpt_standards.yaml
+        applies_to:
+          - all_deployments
+          - hotfixes
+          - emergency_releases
+
+      deployment:
+        file: core/deployment_standards.yaml
+        applies_to:
+          - scheduled_releases
+          - off_hours_releases
+
+      requirements_definition:
+        template: templates/requirements_mvp.yaml
+        applies_to:
+          - mvp_projects
+          - phased_launches
+
+      discovery_sessions:
+        template: templates/discovery_session.yaml
+
+      jira_ticketing:
+        template: templates/jira_story.yaml
+
+  governance:
+    change_management:
+      written_approval_required: true
+      approval_recorded_in:
+        - Support Portal ticket
+        - Basecamp summary
+      scope_control:
+        - Document assumptions and exclusions
+        - Communicate budget risk early
+
+    budgeting:
+      principle: No surprises
+      overage_handling:
+        - Notify when hours may be exceeded
+        - Request approval before proceeding when feasible
+
+  client_registry:
+    authoritative: true
+    id_source: Jira
+    last_verified: "2025-12-29"
+    source_file_reference: Support Client Jira ID CSV
+
+    clients:
+      AATSP:
+        name: Allen Arms Tactical Support Plan
+        type: support_plan
+      AHGC:
+        name: AdaptHealth Growth Catalyst
+        type: growth_catalyst
+      AHSP:
+        name: AdaptHealth Support Plan
+        type: support_plan
+      APGSP:
+        name: Aircraft Performance Group Support Project
+        type: support_project
+      BLGC:
+        name: BASELINE Growth Catalyst
+        type: growth_catalyst
+      BLSP:
+        name: BASELINE Support Plan
+        type: support_plan
+      GTLS:
+        name: GT Linens Support Plan
+        type: support_plan
+      JJSP:
+        name: Designs by JuJu Support Plan
+        type: support_plan
+      RDSCBRONZE:
+        name: RDSC Support Plan
+        type: support_plan
+      RMSP:
+        name: Revision Military Support Plan
+        type: support_plan
+      SBSP:
+        name: Spartan Blades Support Plan
+        type: support_plan
+      SSSP:
+        name: Silencer Shop Support Plan
+        type: support_plan
+
+  client_instances:
+    instance_path_root: client_instances/
+    naming_convention: "{Client_ID}.yaml"
+
+    instances:
+      AATSP:
+        file: client_instances/AATSP.yaml
+        resolved_name: Allen Arms Tactical Support Plan
+        type: support_plan
+      GTLS:
+        file: client_instances/GTLS.yaml
+        resolved_name: GT Linens Support Plan
+        type: support_plan
+      JJSP:
+        file: client_instances/JJSP.yaml
+        resolved_name: Designs by JuJu Support Plan
+        type: support_plan
+      RDSCBRONZE:
+        file: client_instances/RDSCBRONZE.yaml
+        resolved_name: RDSC Support Plan
+        type: support_plan
+      RMSP:
+        file: client_instances/RMSP.yaml
+        resolved_name: Revision Military Support Plan
+        type: support_plan
+      SBSP:
+        file: client_instances/SBSP.yaml
+        resolved_name: Spartan Blades Support Plan
+        type: support_plan
+      SSSP:
+        file: client_instances/SSSP.yaml
+        resolved_name: Silencer Shop Support Plan
+        type: support_plan
