@@ -75,7 +75,7 @@ smart_solutions_master:
       sops:
         - sop_id: SOP-QA-001
           title: Testing and QA Procedures
-          path: sop/testing_and_qa_procedures.yaml
+          path: sops/testing_and_qa_procedures.yaml
           status: active
           owner: Smart Solutions
           governs:
@@ -90,24 +90,24 @@ smart_solutions_master:
       testing_and_qa_procedures:
         sop_id: SOP-QA-001
         title: Testing and QA Procedures
-        path: sop/testing_and_qa_procedures.yaml
+        path: sops/testing_and_qa_procedures.yaml
 
   core_process_files:
     delivery_process:
       path: core/delivery_process.yaml
       primary_sops:
         - sop_id: SOP-QA-001
-          path: sop/testing_and_qa_procedures.yaml
+          path: sops/testing_and_qa_procedures.yaml
     support_process:
       path: core/support_process.yaml
       primary_sops:
         - sop_id: SOP-QA-001
-          path: sop/testing_and_qa_procedures.yaml
+          path: sops/testing_and_qa_procedures.yaml
     qa_cpt_standards:
       path: core/qa_cpt_standards.yaml
       primary_sops:
         - sop_id: SOP-QA-001
-          path: sop/testing_and_qa_procedures.yaml
+          path: sops/testing_and_qa_procedures.yaml
 
   approvals_and_signoff:
     method:
@@ -124,4 +124,4 @@ smart_solutions_master:
     warranty_window: 5_business_days_post_deployment
     governed_by_sop:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
