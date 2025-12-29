@@ -7,7 +7,7 @@ delivery_process:
     sops:
       - sop_id: SOP-QA-001
         title: Testing and QA Procedures
-        path: sop/testing_and_qa_procedures.yaml
+        path: sops/testing_and_qa_procedures.yaml
         applies_to:
           - internal_testing_QA
           - user_acceptance_testing
@@ -84,7 +84,7 @@ delivery_process:
     owner: Smart Solutions
     sop_reference:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
     description: >
       Internal Quality Assurance performed to validate scoped functionality
       prior to client review.
@@ -101,7 +101,7 @@ delivery_process:
     owner: client
     sop_reference:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
     environment: staging
     expectations:
       - validate real world business workflows
@@ -117,7 +117,7 @@ delivery_process:
   deployment_preparation:
     sop_reference:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
     activities:
       - confirm UAT approval
       - finalize deployment window
@@ -129,7 +129,7 @@ delivery_process:
   deployment:
     sop_reference:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
     environment: production
     schedule:
       preferred_days:
@@ -149,7 +149,7 @@ delivery_process:
   post_deployment:
     sop_reference:
       sop_id: SOP-QA-001
-      path: sop/testing_and_qa_procedures.yaml
+      path: sops/testing_and_qa_procedures.yaml
     activities:
       - immediate validation
       - production CPT execution
