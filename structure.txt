@@ -4,6 +4,7 @@ smart_solutions_yaml/
 │  ├─ smart_solutions_master.yaml      # Authoritative operating context
 │  ├─ terminology.yaml                 # Canonical definitions (CPT, UAT, MVP, etc.)
 │  ├─ delivery_process.yaml            # Discovery → build → testing → deployment
+│  ├─ support_process.yaml
 │  ├─ qa_cpt_standards.yaml             # QA and Critical Path Testing SOP
 │  ├─ deployment_standards.yaml         # Deployment rules and cadence
 │
