@@ -1,0 +1,150 @@
+sop:
+  id: SOP-REL-DEPLOY-001
+  name: Releases and Deployment Execution Plans
+  owner: Smart Solutions Project Management
+  applies_to:
+    - All platforms
+    - All deployment sizes
+  last_updated: "2025-01-25"
+  source_document: "PM Release & Deployment Process"
+
+  purpose: >
+    Define the standardized process for planning, scheduling, executing,
+    communicating, and validating releases and deployments at Smart Solutions.
+    This SOP ensures consistency, risk reduction, and clear accountability
+    across Project Management, Technical Leads, and clients.
+
+  roles_and_responsibilities:
+    project_manager:
+      responsibilities:
+        - Create and manage Jira Releases
+        - Coordinate deployment scheduling with client and Tech Lead
+        - Ensure all tickets are approved and ready for deployment
+        - Handle client communication and approval
+        - Perform post-deployment CPT
+    technical_lead:
+      responsibilities:
+        - Prepare and execute deployment plans
+        - Upload deployment execution documentation
+        - Execute deployment at scheduled time
+        - Notify PM when deployment is complete
+    technical_operations_manager:
+      responsibilities:
+        - Review and approve deployment plans
+        - Approve emergency or same-week deployments
+    client:
+      responsibilities:
+        - Approve all tickets prior to deployment
+        - Approve deployment via Basecamp
+        - Perform post-deployment validation on their business workflows
+
+  jira_release_management:
+    release_creation:
+      required: true
+      steps:
+        - Navigate to Jira project Releases tab
+        - Create new release following naming convention
+        - Add short description
+        - Leave start date blank
+        - Update release date after completion
+    naming_convention:
+      format: "release-MM-YYYY-X-Y"
+      example: "release-09-2025-1-0"
+    ticket_assignment:
+      requirements:
+        - All tickets must include Fix Version
+        - All tickets must be in Ready for Deployment status
+        - All tickets must be assigned to the Tech Lead
+        - Ticket comments must confirm client approval
+        - Corresponding CSUPP tickets must also be Ready for Deployment
+
+  deployment_execution_plan:
+    jira_ticket_required: true
+    ticket_type: "Deployment Execution Plan"
+    naming_convention:
+      format: "Deployment Execution Plan - Release MM-YYYY-X-Y"
+    assignment:
+      assigned_to: Technical Lead
+      fix_version_required: true
+    technical_lead_inputs:
+      - Scheduled deployment date and time
+      - GitHub release branch link
+      - Jira release summary link
+      - Deployment execution plan attachment
+    project_manager_inputs:
+      - Desired deployment date and time
+      - Smart Checklist for pre and post deployment testing
+      - Notes for platform version updates if applicable
+
+  scheduling_rules:
+    standard_window:
+      days: Monday-Thursday
+      preferred_time: "Outside client core business hours"
+    restrictions:
+      - No deployments on Fridays
+      - Deployments must be scheduled by 2:00 PM EST on Thursday
+      - Same-day or same-week deployments require approval
+    emergency_deployments:
+      allowed: true
+      approval_required_from:
+        - Technical Operations Manager
+
+  client_communication:
+    pre_deployment:
+      channel: Basecamp
+      required_content:
+        - Deployment date and time
+        - List of included tickets
+        - Links to client-facing support portal tickets
+      approval_required: true
+      approval_method: Basecamp confirmation
+    csupp_ticket:
+      required: true
+      naming_convention:
+        format: "(MM/DD) Deployment (time) - release MM-YYYY-X-Y"
+      linkage:
+        - Must be linked to Deployment Execution Plan ticket
+
+  deployment_execution:
+    performed_by: Technical Lead
+    steps:
+      - Execute deployment per approved plan
+      - Monitor for immediate issues
+      - Notify Project Manager upon completion
+
+  post_deployment_process:
+    critical_path_testing:
+      owner: Project Manager
+      scope:
+        - Platform critical flows
+        - Deployed functionality
+      exceptions:
+        bigcommerce:
+          full_cpt_required: false
+          testing_level: "At PM discretion"
+    issue_handling:
+      - Notify client if issues are discovered
+      - Coordinate remediation with Tech Lead
+    client_notification:
+      - Deployment completion confirmation
+      - Testing in progress notice
+      - Final success confirmation
+
+  release_closure:
+    requirements:
+      - Client confirms successful testing
+      - All tickets closed
+      - Release closed by Technical Lead in Jira
+
+  documentation_and_audit:
+    required_artifacts:
+      - Jira Release
+      - Deployment Execution Plan ticket
+      - CSUPP deployment ticket
+      - Basecamp approval thread
+      - CPT confirmation notes
+
+  compliance_notes:
+    - Client approval is mandatory prior to deployment
+    - Unapproved deployments may be postponed or canceled
+    - Warranty coverage requires testing and approval prior to deployment
