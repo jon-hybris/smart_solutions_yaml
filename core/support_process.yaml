@@ -1,18 +1,28 @@
 support_process:
-  version: "1.0"
+  version: "1.1"
   owner: Smart Solutions
   last_updated: "2025-12-29"
 
   purpose:
     description: >
-      Provide a structured, transparent support framework that ensures
+      Provide a structured and transparent support framework that ensures
       stability, responsiveness, and continuous improvement of client
-      eCommerce platforms after launch.
+      eCommerce platforms following deployment.
+
+  governance:
+    sops:
+      - sop_id: SOP-QA-001
+        title: Testing and QA Procedures
+        path: sop/testing_and_qa_procedures.yaml
+        applies_to:
+          - warranty_handling
+          - execution
+          - client_review_and_closure
 
   entry_points:
     primary:
       channel: Smart Solutions Support Portal
-      uses:
+      used_for:
         - support requests
         - incident reporting
         - approvals
@@ -21,11 +31,10 @@ support_process:
       channel: Basecamp
       allowed_for:
         - status communication
-        - deployment notices
-        - coordination
+        - deployment coordination
     exclusions:
-      - direct developer contact
-      - ad hoc requests outside approved channels
+      - direct developer requests
+      - informal or untracked work
 
   eligibility:
     requires:
@@ -33,8 +42,8 @@ support_process:
       - active warranty period
       - approved change request
     notes:
-      - work is not performed without approval
-      - access issues may delay response
+      - no work is performed without approval
+      - delays in access may impact response times
 
   ticket_lifecycle:
     states:
@@ -50,24 +59,24 @@ support_process:
   triage_and_prioritization:
     process:
       - review ticket details
-      - confirm business impact
+      - assess business impact
+      - confirm warranty or billable status
       - assign priority
-      - validate coverage
     priority_levels:
       emergency:
         description: >
           Production impacting issues requiring immediate attention.
         billing:
           covered_by_plan: false
-          billed_at_emergency_rate: true
+          emergency_rate_applies: true
       high:
         description: >
-          Time sensitive issues impacting key functionality or business operations.
+          Time sensitive issues impacting core functionality.
         billing:
           covered_by_plan: true
       medium:
         description: >
-          Non urgent issues with limited business impact.
+          Non urgent issues with moderate business impact.
         billing:
           covered_by_plan: true
       low:
@@ -80,21 +89,24 @@ support_process:
     governed_by: Smart Solutions SLA
     notes:
       - response times depend on priority and client responsiveness
-      - estimates provided when applicable
+      - estimates are provided when applicable
 
   warranty_handling:
+    sop_reference:
+      sop_id: SOP-QA-001
+      path: sop/testing_and_qa_procedures.yaml
     coverage:
-      duration: "5 business days post deployment"
+      duration: 5_business_days_post_deployment
       includes:
         - defects caused by Smart Solutions code or configuration
       excludes:
+        - untested functionality
         - third party systems
         - hosting issues
-        - platform core bugs
         - client introduced changes
-    validation:
+    validation_requirements:
       - issue must be reproducible
-      - issue must relate to approved scope
+      - issue must relate to approved and tested scope
 
   estimation_and_approval:
     when_required:
@@ -104,7 +116,7 @@ support_process:
     process:
       - assess impact
       - provide estimate
-      - await approval via support portal
+      - await written approval via support portal
     auto_approval:
       allowed_hours: 1
       purpose:
@@ -113,6 +125,9 @@ support_process:
         - communication
 
   execution:
+    sop_reference:
+      sop_id: SOP-QA-001
+      path: sop/testing_and_qa_procedures.yaml
     standards:
       - work performed in staging when applicable
       - production changes follow deployment process
@@ -122,23 +137,26 @@ support_process:
       - undocumented changes
 
   client_review_and_closure:
+    sop_reference:
+      sop_id: SOP-QA-001
+      path: sop/testing_and_qa_procedures.yaml
     process:
       - notify client of completion
       - request validation
       - close ticket after confirmation
     notes:
-      - lack of response may result in closure
+      - lack of client response may result in closure
       - reopened issues follow standard triage
 
   emergency_support:
     availability:
-      weekdays: "extended hours"
-      weekends_and_holidays: "on call"
+      weekdays: extended_hours
+      weekends_and_holidays: on_call
     requirements:
       - ticket marked as emergency
-      - production impact confirmed
+      - confirmed production impact
     notes:
-      - emergency rates apply
+      - emergency billing rates apply
       - work may proceed without prior estimate
 
   reporting_and_visibility:
@@ -146,7 +164,7 @@ support_process:
       - support portal dashboard
       - plan tracking dashboard
     cadence:
-      - real time ticket updates
+      - real time updates
       - periodic status reviews
 
   escalation:
@@ -158,8 +176,8 @@ support_process:
       - technical leadership
       - executive review if required
 
-  success_metrics:
+  success_criteria:
     - SLA adherence
-    - ticket resolution quality
-    - client satisfaction
+    - consistent ticket resolution quality
+    - enforceable warranty boundaries
     - platform stability
