@@ -15,6 +15,25 @@ smart_solutions_master:
         - PM/BA | Smart Solutions
       basecamp_signature_policy: No signature in Basecamp messages
 
+  references:
+    terminology:
+      file: terminology.yaml
+      purpose:
+        - shared_definitions
+        - consistent_language_across_clients
+      includes:
+        - environments
+        - testing
+        - deployment
+        - support
+        - tickets
+        - scope_management
+        - communication
+        - ownership
+      usage_guidelines:
+        - Prefer referencing terminology definitions over redefining concepts here
+        - If a local override is required, note it explicitly under overrides
+
   organization:
     name: Smart Solutions
     website: https://www.smartsolutions.dev
@@ -28,8 +47,8 @@ smart_solutions_master:
       source_control: Git
 
     support_portal:
-      name: Smart Solutions Support Portal
-      url: https://smartsolutionsdev.atlassian.net/servicedesk/customer/portal/1
+      name_ref: terminology.organization.support_portal.name
+      url_ref: terminology.organization.support_portal.url
       used_for:
         - support_requests
         - incident_reporting
@@ -46,11 +65,13 @@ smart_solutions_master:
           - Friday
         time_range_local: 09:00-18:00
         timezone: America/New_York
+        definition_ref: terminology.support.business_hours.regular
 
       extended_on_call_emergency:
         weekdays_time_range_local: 18:00-22:00
         weekends_holidays_time_range_local: 10:00-18:00
         timezone: America/New_York
+        definition_ref: terminology.support.business_hours.extended_on_call_emergency
 
     observed_holidays:
       - New Year's Day
@@ -71,14 +92,21 @@ smart_solutions_master:
         - Do not change client_id once established
 
   terminology:
-    CPT:
-      meaning: Critical Path Testing
-      required:
-        - pre_deployment
-        - post_deployment
+    reference_file: terminology.yaml
+    terms:
+      CPT:
+        meaning_ref: terminology.testing.cpt.name
+        required_ref: terminology.testing.cpt.description
+        required:
+          - pre_deployment
+          - post_deployment
 
   environments:
+    reference_file: terminology.yaml
+
     staging:
+      name_ref: terminology.environments.staging.name
+      description_ref: terminology.environments.staging.description
       purpose:
         - client_review
         - uat
@@ -87,13 +115,19 @@ smart_solutions_master:
         - client_approval_prior_to_production
 
     production:
+      name_ref: terminology.environments.production.name
+      description_ref: terminology.environments.production.description
       purpose:
         - live_customer_environment
         - revenue_operations
 
   testing_and_quality:
+    reference_file: terminology.yaml
+
     smart_solutions_testing:
       owner: Smart Solutions
+      qa_ref: terminology.testing.qa
+      cpt_ref: terminology.testing.cpt
       includes:
         - feature_validation
         - regression_smoke
@@ -102,17 +136,20 @@ smart_solutions_master:
 
     client_uat:
       owner: Client
+      uat_ref: terminology.testing.uat
       expectations:
         - Test how your team actually uses the site day to day
         - Validate checkout end to end, including at least one live order when feasible
         - Validate integrations your team relies on
         - Verify content, merchandising, and pricing
       approval:
-        method: Written approval via Support Portal ticket
+        method_ref: terminology.deployment.approval.method
         required_before: Production deployment
 
   deployment:
-    definition: Moving approved changes from Staging to Production
+    reference_file: terminology.yaml
+
+    definition_ref: terminology.deployment.deployment.description
 
     standard_schedule:
       days:
@@ -122,6 +159,7 @@ smart_solutions_master:
         - Thursday
       time_range_local: 05:30-09:00
       timezone: America/New_York
+      schedule_ref: terminology.deployment.deployment_window.standard
 
     prerequisites:
       - staging_testing_complete
@@ -129,6 +167,7 @@ smart_solutions_master:
 
     communication:
       channel: Basecamp
+      channel_ref: terminology.communication.basecamp.usage
       deployment_summary_includes:
         - deployment_date_time
         - included_tickets
@@ -139,9 +178,12 @@ smart_solutions_master:
 
     rollback:
       responsibility: Smart Solutions
+      responsibility_ref: terminology.deployment.rollback.description
       principle: Defined per release and platform dependent
 
   support:
+    reference_file: terminology.yaml
+
     sla:
       name: Smart Solutions SLA
 
@@ -149,18 +191,23 @@ smart_solutions_master:
         high:
           response_time_business_days: "1-2"
           resource_allocation_business_days: "1-3"
+          definition_ref: terminology.tickets.priorities.high.description
         medium:
           response_time_business_days: "3-4"
+          definition_ref: terminology.tickets.priorities.medium.description
         low:
           response_time_business_days: "7"
+          definition_ref: terminology.tickets.priorities.low.description
 
       emergency_expectations:
         receipt_confirmation: Within 30 minutes
         initial_assessment: Within 1 hour
+        definition_ref: terminology.support.emergency.description
+        billing_ref: terminology.support.emergency.billing
 
         severity_levels:
           level_1:
-            name: Critical
+            name_ref: terminology.tickets.severity_levels.level_1.name
             target_resolution: Within 4 hours
             examples:
               - site_down
@@ -168,14 +215,14 @@ smart_solutions_master:
               - security_breach
 
           level_2:
-            name: High
+            name_ref: terminology.tickets.severity_levels.level_2.name
             target_resolution: Less than 1 day
             examples:
               - key_functionality_impaired
               - severe_performance_degradation
 
           level_3:
-            name: Medium
+            name_ref: terminology.tickets.severity_levels.level_3.name
             target_resolution: Less than 2 business days
             examples:
               - expedited_non_critical_items
@@ -186,6 +233,7 @@ smart_solutions_master:
 
     warranty:
       name: Support Plan Warranty Quick Reference
+      warranty_ref: terminology.support.warranty.description
       covers:
         - Smart Solutions code defects
         - Smart Solutions configuration defects
@@ -220,24 +268,38 @@ smart_solutions_master:
           - all_deployments
           - hotfixes
           - emergency_releases
+        terminology_ref:
+          - terminology.testing.qa
+          - terminology.testing.cpt
 
       deployment:
         file: core/deployment_standards.yaml
         applies_to:
           - scheduled_releases
           - off_hours_releases
+        terminology_ref:
+          - terminology.deployment.deployment
+          - terminology.deployment.deployment_window
+          - terminology.deployment.approval
 
       requirements_definition:
         template: templates/requirements_mvp.yaml
         applies_to:
           - mvp_projects
           - phased_launches
+        terminology_ref:
+          - terminology.scope_management.mvp
+          - terminology.scope_management.change_request
+          - terminology.scope_management.estimate
 
       discovery_sessions:
         template: templates/discovery_session.yaml
 
       jira_ticketing:
         template: templates/jira_story.yaml
+        terminology_ref:
+          - terminology.tickets.ticket
+          - terminology.tickets.priorities
 
   governance:
     change_management:
@@ -245,6 +307,7 @@ smart_solutions_master:
       approval_recorded_in:
         - Support Portal ticket
         - Basecamp summary
+      approval_method_ref: terminology.deployment.approval.method
       scope_control:
         - Document assumptions and exclusions
         - Communicate budget risk early
